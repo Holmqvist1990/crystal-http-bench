@@ -14,11 +14,11 @@ Experimenting with Crystal, benching against a toy example I often use.
 
 Running with [ApacheBench](https://httpd.apache.org/docs/2.4/programs/ab.html).
 
-Currently only testing with one set of json, but `real use` would imply several different sets.
-
 ```
 ab -c 10 -n 15000 -p test.json -T application/x-www-form-urlencoded http://localhost:8080/ >result.txt 2>&1
 ```
+
+Currently only testing with one set of json, but `real use` would imply several different sets.
 
 ## Go implementation.
 
