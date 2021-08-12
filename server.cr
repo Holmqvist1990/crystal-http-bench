@@ -1,16 +1,6 @@
 require "http/server"
 require "json"
 
-# -------------------------------------------------------------------------- #
-#                               BENCHMARK TEST                               #
-# -------------------------------------------------------------------------- #
-# 1. Deserialize JSON from wire.                                             #
-#         {"from": "steve", "url": "/steve", "text": "hello"}.               #
-# 2. Insert into hash if text is new, no duplicates.                         #
-#         [from][url].push(text)                                             #
-# 3. Done.                                                                   #
-# -------------------------------------------------------------------------- #
-
 hash = HTextHash.new
 
 server = HTTP::Server.new do |context|

@@ -21,6 +21,9 @@ ab -c 10 -n 15000 -p test.json -T application/x-www-form-urlencoded http://local
 ## Go implementation.
 
 ```
+Terminal 1: $ go run .
+Terminal 2: [apache-bench]
+
 Time per request:       2.803 [ms] (mean)
 Time per request:       0.280 [ms] (mean, across all concurrent requests)
 Transfer rate:          261.26 [Kbytes/sec] received
@@ -30,7 +33,12 @@ Transfer rate:          261.26 [Kbytes/sec] received
 
 ## Crystal --release implementation.
 
+
 ```
+Terminal 1: $ crystal build server.cr --release
+            $ ./server
+Terminal 2: [apache-bench]
+
 Time per request:       3.023 [ms] (mean)
 Time per request:       0.302 [ms] (mean, across all concurrent requests)
 Transfer rate:          122.74 [Kbytes/sec] received
