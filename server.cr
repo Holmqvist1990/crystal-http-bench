@@ -45,17 +45,18 @@ class HTextHash
   end
 
   def insert(ht : HText) : Bool
-    unless @hash[ht.from]?
-      @hash[ht.from] = Hash(String, HTexts).new
-    end
-    
-    unless @hash[ht.from][ht.url]?
-      new_ht = HTexts.new(ht.from, ht.url, [ht.text])
-      @hash[ht.from][ht.url] = new_ht
-      return true
+    from = @hash[ht.from]?
+    unless from
+      from = Hash(String, HTexts).new
     end
 
-    res = @hash[ht.from][ht.url]
+    res = from[ht.url]?
+    
+    unless res
+      new_ht = HTexts.new(ht.from, ht.url, [ht.text])
+      res = new_ht
+      return true
+    end
     
     if res.texts.any?{ |text| text == ht.text }
       return false

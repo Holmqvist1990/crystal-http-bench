@@ -65,20 +65,22 @@ func (h Hash) Get(ht HText) (*HTexts, bool) {
 }
 
 func (h *Hash) Insert(ht HText) bool {
-	if _, ok := h.hash[ht.From]; !ok {
-		h.hash[ht.From] = map[string]HTexts{}
-		h.hash[ht.From][ht.URL] = HTexts{
+	from, ok := h.hash[ht.From]
+	if !ok {
+		from := map[string]HTexts{}
+		from[ht.URL] = HTexts{
 			From: ht.From,
 			URL:  ht.URL,
 		}
+		h.hash[ht.From] = from
 	}
-	for _, txt := range h.hash[ht.From][ht.URL].Texts {
+	hts := from[ht.URL]
+	for _, txt := range hts.Texts {
 		if txt == ht.Text {
 			return false
 		}
 	}
-	hts := h.hash[ht.From][ht.URL]
-	hts.Texts = append(h.hash[ht.From][ht.URL].Texts, ht.Text)
+	hts.Texts = append(hts.Texts, ht.Text)
 	h.hash[ht.From][ht.URL] = hts
 	return true
 }
