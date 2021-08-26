@@ -1,0 +1,9 @@
+result.txt
+.fake
+.ionide
+/fsharp/bin/*
+/fsharp/obj/*
+/ocaml/_build/*
+/ocaml/_esy/*
+/ocaml/esy.lock/*
+/ocaml/node_modules/*

@@ -1,0 +1,9 @@
+{
+    "dependencies": {
+        "ocaml": "4.08.x",
+        "@opam/dune": "*",
+        "@opam/opium": "*",
+        "@opam/ppx_deriving_yojson": "*",
+        "@opam/yojson": "*"
+    }
+}
