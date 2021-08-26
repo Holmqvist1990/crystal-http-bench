@@ -1,9 +1,46 @@
 # HTTP-JSON-Bench.
 
+Testing a tiny CRUD implementation in a various languages.
+
+```
+HTTP POST -> JSON Body -> {Person} > Add into mutable List<Person>
+```
+
 Running with [ApacheBench](https://httpd.apache.org/docs/2.4/programs/ab.html).
 
 ```
 ab -c 10 -n 50000 -p test.json -T application/x-www-form-urlencoded http://localhost:3000/ >result.txt 2>&1
+```
+
+Where `test.json` is:
+
+```
+{
+    "name": "John A. Doe",
+    "email": "john.a.doe@email.com",
+    "residences": [
+        {
+            "street": "Example Avenue 123",
+            "city": "Megametro-3000",
+            "country": "Milky Way"
+        },
+        {
+            "street": "Example Avenue 124",
+            "city": "Megametro-3000",
+            "country": "Milky Way"
+        },
+        {
+            "street": "Example Avenue 125",
+            "city": "Megametro-3000",
+            "country": "Milky Way"
+        },
+        {
+            "street": "Example Avenue 126",
+            "city": "Megametro-3000",
+            "country": "Milky Way"
+        }
+    ]
+}
 ```
 
 ## Go implementation.
@@ -50,7 +87,8 @@ Transfer rate:          113.00 [Kbytes/sec] received
 ## OCaml implementation.
 
 ```
-Terminal 1: $ dune exec ./ocamlbench.exe
+Terminal 1: $ dune build
+            $ dune exec ./ocamlbench.exe
 Terminal 2: $ [apache-bench]
 
 Time taken for tests:   19.005 seconds
