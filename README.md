@@ -2,11 +2,6 @@
 
 Testing a tiny CRUD implementation in a various languages.
 
-TODO:
-* Currently unsafe writes
-* F# implementation fails to deserialize values
-* V refuses benchmark connections
-
 ```
 HTTP POST -> JSON Body -> {Person} > Add into mutable List<Person>
 ```
@@ -17,36 +12,10 @@ Benching with [Baton](https://github.com/americanexpress/baton).
 baton -u http://localhost:3000 -c 1000 -r 1000000 -m POST -f test.json
 ```
 
-Where `test.json` is:
-
-```
-{
-    "name": "John A. Doe",
-    "email": "john.a.doe@email.com",
-    "residences": [
-        {
-            "street": "Example Avenue 123",
-            "city": "Megametro-3000",
-            "country": "Milky Way"
-        },
-        {
-            "street": "Example Avenue 124",
-            "city": "Megametro-3000",
-            "country": "Milky Way"
-        },
-        {
-            "street": "Example Avenue 125",
-            "city": "Megametro-3000",
-            "country": "Milky Way"
-        },
-        {
-            "street": "Example Avenue 126",
-            "city": "Megametro-3000",
-            "country": "Milky Way"
-        }
-    ]
-}
-```
+## TODO.
+* Currently unsafe writes.
+* F# implementation fails to deserialize values.
+* V refuses benchmark connections.
 
 ## Crystal implementation.
 
