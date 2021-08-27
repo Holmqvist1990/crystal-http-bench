@@ -63,6 +63,27 @@ Transfer rate:          295.03 [Kbytes/sec] received
                         3326.51 kb/s total
 ```
 
+## F# implementation.
+
+```
+Terminal 1: $ dotnet build --configuration Release
+            $ ./bin/Release/net5.0/fsharp.exe
+Terminal 2: $ [apache-bench]
+
+Time taken for tests:   14.299 seconds
+Complete requests:      50000
+Failed requests:        0
+Total transferred:      6700000 bytes
+Total body sent:        41100000
+HTML transferred:       0 bytes
+Requests per second:    3496.73 [#/sec] (mean)
+Time per request:       2.860 [ms] (mean)
+Time per request:       0.286 [ms] (mean, across all concurrent requests)
+Transfer rate:          457.58 [Kbytes/sec] received
+                        2806.94 kb/s sent
+                        3264.52 kb/s total
+```
+
 ## Crystal implementation.
 
 ```
@@ -103,25 +124,4 @@ Time per request:       0.380 [ms] (mean, across all concurrent requests)
 Transfer rate:          97.63 [Kbytes/sec] received
                         2111.94 kb/s sent
                         2209.57 kb/s total
-```
-
-## F# implementation.
-
-```
-Terminal 1: $ dotnet build --configuration Release
-            $ ./bin/Release/net5.0/fsharp.exe
-Terminal 2: $ [apache-bench]
-
-Time taken for tests:   19.746 seconds
-Complete requests:      50000
-Failed requests:        0
-Total transferred:      6700000 bytes
-Total body sent:        41100000
-HTML transferred:       0 bytes
-Requests per second:    2532.20 [#/sec] (mean)
-Time per request:       3.949 [ms] (mean)
-Time per request:       0.395 [ms] (mean, across all concurrent requests)
-Transfer rate:          331.36 [Kbytes/sec] received
-                        2032.69 kb/s sent
-                        2364.05 kb/s total
 ```

@@ -1,9 +1,16 @@
 open System
-open System.Text.Json
 open Suave
 open Suave.Filters
 open Suave.Operators
 open Suave.Successful
+open Utf8Json
+open Utf8Json.Resolvers
+open Utf8Json.FSharp
+
+CompositeResolver.RegisterAndSetAsDefault(
+    FSharpResolver.Instance,
+    StandardResolver.Default
+)
 
 type Residence =
     { Address: string
@@ -17,12 +24,9 @@ type Person =
 
 let people = Collections.Generic.List<Person>()
 
-let options = JsonSerializerOptions()
-options.PropertyNameCaseInsensitive <- true
-
 let appendPeople (r: HttpRequest) =
     Text.Encoding.UTF8.GetString(r.rawForm)
-    |> fun x -> JsonSerializer.Deserialize<Person>(x, options)
+    |> fun x -> JsonSerializer.Deserialize<Person>(x)
     |> people.Add
 
     OK ""
@@ -30,7 +34,7 @@ let appendPeople (r: HttpRequest) =
 let app =
     path "/"
     >=> choose [ GET
-                 >=> request (fun _ -> OK(JsonSerializer.Serialize people))
+                 >=> request (fun _ -> OK(JsonSerializer.ToJsonString people))
                  POST >=> request appendPeople ]
 
 [<EntryPoint>]
