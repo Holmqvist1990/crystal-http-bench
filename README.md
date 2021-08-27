@@ -2,14 +2,19 @@
 
 Testing a tiny CRUD implementation in a various languages.
 
+TODO:
+* Currently unsafe writes
+* F# implementation fails to deserialize values
+* V refuses benchmark connections
+
 ```
 HTTP POST -> JSON Body -> {Person} > Add into mutable List<Person>
 ```
 
-Running with [ApacheBench](https://httpd.apache.org/docs/2.4/programs/ab.html).
+Benching with [Baton](https://github.com/americanexpress/baton).
 
 ```
-ab -c 10 -n 50000 -p test.json -T application/x-www-form-urlencoded http://localhost:3000/ >result.txt 2>&1
+baton -u http://localhost:3000 -c 1000 -r 1000000 -m POST -f test.json
 ```
 
 Where `test.json` is:
@@ -43,66 +48,18 @@ Where `test.json` is:
 }
 ```
 
-## Go implementation.
-
-```
-Terminal 1: $ go run .
-Terminal 2: [apache-bench]
-
-Time taken for tests:   12.305 seconds
-Complete requests:      50000
-Failed requests:        0
-Total transferred:      4000000 bytes
-Total body sent:        41100000
-HTML transferred:       0 bytes
-Requests per second:    4063.49 [#/sec] (mean)
-Time per request:       2.461 [ms] (mean)
-Time per request:       0.246 [ms] (mean, across all concurrent requests)
-Transfer rate:          317.46 [Kbytes/sec] received
-                        3261.90 kb/s sent
-                        3579.36 kb/s total
-```
-
-## F# implementation.
-
-```
-Terminal 1: $ dotnet build --configuration Release
-            $ ./bin/Release/net5.0/fsharp.exe
-Terminal 2: $ [apache-bench]
-
-Time taken for tests:   14.299 seconds
-Complete requests:      50000
-Failed requests:        0
-Total transferred:      6700000 bytes
-Total body sent:        41100000
-HTML transferred:       0 bytes
-Requests per second:    3496.73 [#/sec] (mean)
-Time per request:       2.860 [ms] (mean)
-Time per request:       0.286 [ms] (mean, across all concurrent requests)
-Transfer rate:          457.58 [Kbytes/sec] received
-                        2806.94 kb/s sent
-                        3264.52 kb/s total
-```
-
 ## Crystal implementation.
 
 ```
 Terminal 1: $ crystal build server.cr --release
             $ ./server
-Terminal 2: [apache-bench]
+Terminal 2: [baton]
 
-Time taken for tests:   16.421 seconds
-Complete requests:      50000
-Failed requests:        0
-Total transferred:      1900000 bytes
-Total body sent:        41100000
-HTML transferred:       0 bytes
-Requests per second:    3044.92 [#/sec] (mean)
-Time per request:       3.284 [ms] (mean)
-Time per request:       0.328 [ms] (mean, across all concurrent requests)
-Transfer rate:          113.00 [Kbytes/sec] received
-                        2444.26 kb/s sent
-                        2557.26 kb/s total
+Time taken to complete requests:           327.4068ms
+Requests per second:                        3 054 304
+Max response time (ms):                            84
+Min response time (ms):                             0
+Avg response time (ms):                         35.13
 ```
 
 ## OCaml implementation.
@@ -110,18 +67,49 @@ Transfer rate:          113.00 [Kbytes/sec] received
 ```
 Terminal 1: $ dune build
             $ dune exec ./ocamlbench.exe
-Terminal 2: $ [apache-bench]
+Terminal 2: $ [baton]
 
-Time taken for tests:   19.005 seconds
-Complete requests:      50000
-Failed requests:        0
-Total transferred:      1900000 bytes
-Total body sent:        41100000
-HTML transferred:       0 bytes
-Requests per second:    2630.93 [#/sec] (mean)
-Time per request:       3.801 [ms] (mean)
-Time per request:       0.380 [ms] (mean, across all concurrent requests)
-Transfer rate:          97.63 [Kbytes/sec] received
-                        2111.94 kb/s sent
-                        2209.57 kb/s total
+Time taken to complete requests:           376.8637ms
+Requests per second:                        2 653 479
+Max response time (ms):                            91
+Min response time (ms):                             0
+Avg response time (ms):                         22.97
+```
+
+## F# implementation.
+
+```
+Terminal 1: $ dotnet build --configuration Release
+            $ ./bin/Release/net5.0/fsharp.exe
+Terminal 2: $ [baton]
+
+All fields null? Will have to debug this one later.
+
+Time taken to complete requests:           438.9992ms
+Requests per second:                        2 277 908
+Max response time (ms):                           120
+Min response time (ms):                             6
+Avg response time (ms):                         65.50
+```
+
+## Go implementation.
+
+```
+Terminal 1: $ go run .
+Terminal 2: [baton]
+
+Time taken to complete requests:           628.9623ms
+Requests per second:                        1 589 920
+Max response time (ms):                           504
+Min response time (ms):                             0
+Avg response time (ms):                          9.86
+```
+
+## V implementation.
+```
+Terminal 1: $ v .
+            $ ./v.exe
+Terminal 2: $ [baton]
+
+apr_socket_recv: Transport endpoint is not connected (107)
 ```
