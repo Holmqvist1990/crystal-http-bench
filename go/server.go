@@ -1,14 +1,15 @@
 package main
 
 import (
-	"encoding/json"
 	"fmt"
 	"net/http"
+	"github.com/json-iterator/go"
 )
 
 var (
 	port   = 3000
 	people = []Person{}
+	json = jsoniter.ConfigCompatibleWithStandardLibrary
 )
 
 func main() {

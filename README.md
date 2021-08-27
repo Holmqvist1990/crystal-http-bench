@@ -49,18 +49,18 @@ Where `test.json` is:
 Terminal 1: $ go run .
 Terminal 2: [apache-bench]
 
-Time taken for tests:   13.240 seconds
+Time taken for tests:   12.305 seconds
 Complete requests:      50000
 Failed requests:        0
 Total transferred:      4000000 bytes
 Total body sent:        41100000
 HTML transferred:       0 bytes
-Requests per second:    3776.44 [#/sec] (mean)
-Time per request:       2.648 [ms] (mean)
-Time per request:       0.265 [ms] (mean, across all concurrent requests)
-Transfer rate:          295.03 [Kbytes/sec] received
-                        3031.48 kb/s sent
-                        3326.51 kb/s total
+Requests per second:    4063.49 [#/sec] (mean)
+Time per request:       2.461 [ms] (mean)
+Time per request:       0.246 [ms] (mean, across all concurrent requests)
+Transfer rate:          317.46 [Kbytes/sec] received
+                        3261.90 kb/s sent
+                        3579.36 kb/s total
 ```
 
 ## F# implementation.
