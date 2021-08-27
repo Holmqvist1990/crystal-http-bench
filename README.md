@@ -17,7 +17,7 @@ baton -u http://localhost:3000 -c 1000 -r 1000000 -m POST -f test.json
 * F# implementation fails to deserialize values.
 * V refuses benchmark connections.
 
-## Crystal implementation.
+## #1. Crystal implementation.
 
 ```
 Terminal 1: $ crystal build server.cr --release
@@ -31,7 +31,7 @@ Min response time (ms):                             0
 Avg response time (ms):                         35.13
 ```
 
-## OCaml implementation.
+## #2. OCaml implementation.
 
 ```
 Terminal 1: $ dune build
@@ -45,7 +45,7 @@ Min response time (ms):                             0
 Avg response time (ms):                         22.97
 ```
 
-## F# implementation.
+## #3. F# implementation.
 
 ```
 Terminal 1: $ dotnet build --configuration Release
@@ -61,7 +61,7 @@ Min response time (ms):                             6
 Avg response time (ms):                         65.50
 ```
 
-## Go implementation.
+## #4. Go implementation.
 
 ```
 Terminal 1: $ go run .
@@ -74,7 +74,7 @@ Min response time (ms):                             0
 Avg response time (ms):                          9.86
 ```
 
-## V implementation.
+## #5. V implementation.
 ```
 Terminal 1: $ v .
             $ ./v.exe
