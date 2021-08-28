@@ -37,6 +37,7 @@ func router(w http.ResponseWriter, r *http.Request) {
 		var p Person
 		err := json.NewDecoder(r.Body).Decode(&p)
 		if err != nil {
+			w.WriteHeader(500)
 			return
 		}
 		people.mu.Lock()
