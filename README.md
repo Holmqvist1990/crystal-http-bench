@@ -14,7 +14,7 @@ baton -u http://localhost:3000 -c 1000 -r 1000000 -m POST -f test.json
 
 ## TODO.
 * Currently unsafe writes.
-* F# implementation fails to deserialize values.
+* ~~F# implementation fails to deserialize values.~~
 * V refuses benchmark connections.
 
 ## #1. Crystal implementation.
@@ -31,7 +31,21 @@ Min response time (ms):                             0
 Avg response time (ms):                         35.13
 ```
 
-## #2. OCaml implementation.
+## #2. F# implementation.
+
+```
+Terminal 1: $ dotnet build --configuration Release
+            $ ./bin/Release/net5.0/fsharp.exe
+Terminal 2: $ [baton]
+
+Time taken to complete requests:           372.7315ms
+Requests per second:                          2682896
+Max response time (ms):                           134
+Min response time (ms):                             0
+Avg response time (ms):                         83.35
+```
+
+## #3. OCaml implementation.
 
 ```
 Terminal 1: $ dune build
@@ -43,22 +57,6 @@ Requests per second:                        2 653 479
 Max response time (ms):                            91
 Min response time (ms):                             0
 Avg response time (ms):                         22.97
-```
-
-## #3. F# implementation.
-
-```
-Terminal 1: $ dotnet build --configuration Release
-            $ ./bin/Release/net5.0/fsharp.exe
-Terminal 2: $ [baton]
-
-All fields null? Will have to debug this one later.
-
-Time taken to complete requests:           438.9992ms
-Requests per second:                        2 277 908
-Max response time (ms):                           120
-Min response time (ms):                             6
-Avg response time (ms):                         65.50
 ```
 
 ## #4. Go implementation.
