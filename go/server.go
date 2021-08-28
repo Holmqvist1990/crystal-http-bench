@@ -3,13 +3,15 @@ package main
 import (
 	"fmt"
 	"net/http"
-	"github.com/json-iterator/go"
+	"sync"
+
+	jsoniter "github.com/json-iterator/go"
 )
 
 var (
 	port   = 3000
-	people = []Person{}
-	json = jsoniter.ConfigCompatibleWithStandardLibrary
+	people = People{}
+	json   = jsoniter.ConfigCompatibleWithStandardLibrary
 )
 
 func main() {
@@ -22,7 +24,9 @@ func main() {
 func router(w http.ResponseWriter, r *http.Request) {
 	switch r.Method {
 	case "GET":
-		json, err := json.Marshal(people)
+		people.mu.Lock()
+		defer people.mu.Unlock()
+		json, err := json.Marshal(people.v)
 		if err != nil {
 			w.WriteHeader(500)
 			return
@@ -35,7 +39,9 @@ func router(w http.ResponseWriter, r *http.Request) {
 		if err != nil {
 			return
 		}
-		people = append(people, p)
+		people.mu.Lock()
+		defer people.mu.Unlock()
+		people.v = append(people.v, p)
 		w.WriteHeader(201)
 		break
 	}
@@ -51,4 +57,9 @@ type Residence struct {
 	Street  string `json:"street"`
 	City    string `json:"city"`
 	Country string `json:"country"`
+}
+
+type People struct {
+	v  []Person
+	mu sync.Mutex
 }

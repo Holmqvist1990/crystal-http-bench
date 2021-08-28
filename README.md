@@ -65,11 +65,11 @@ Avg response time (ms):                         22.97
 Terminal 1: $ go run .
 Terminal 2: [baton]
 
-Time taken to complete requests:           628.9623ms
-Requests per second:                        1 589 920
-Max response time (ms):                           504
+Time taken to complete requests:           607.2148ms
+Requests per second:                          1646864
+Max response time (ms):                           523
 Min response time (ms):                             0
-Avg response time (ms):                          9.86
+Avg response time (ms):                          8.95
 ```
 
 ## #5. V implementation.
