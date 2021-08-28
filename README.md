@@ -13,7 +13,7 @@ baton -u http://localhost:3000 -c 1000 -r 1000000 -m POST -f test.json
 ```
 
 ## TODO.
-* Currently unsafe writes.
+* ~~Currently unsafe writes.~~
 * ~~F# implementation fails to deserialize values.~~
 * V refuses benchmark connections.
 
@@ -24,11 +24,11 @@ Terminal 1: $ crystal build server.cr --release
             $ ./server
 Terminal 2: [baton]
 
-Time taken to complete requests:           327.4068ms
-Requests per second:                        3 054 304
-Max response time (ms):                            84
+Time taken to complete requests:           327.3433ms
+Requests per second:                          3054897
+Max response time (ms):                           117
 Min response time (ms):                             0
-Avg response time (ms):                         35.13
+Avg response time (ms):                         28.11
 ```
 
 ## #2. F# implementation.
