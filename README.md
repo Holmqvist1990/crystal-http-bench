@@ -25,7 +25,7 @@ Terminal 1: $ crystal build server.cr --release
 Terminal 2: [baton]
 
 Time taken to complete requests:           327.3433ms
-Requests per second:                          3054897
+Requests per second:                        3 054 897
 Max response time (ms):                           117
 Min response time (ms):                             0
 Avg response time (ms):                         28.11
@@ -39,7 +39,7 @@ Terminal 1: $ dotnet build --configuration Release
 Terminal 2: $ [baton]
 
 Time taken to complete requests:           372.7315ms
-Requests per second:                          2682896
+Requests per second:                        2 682 896
 Max response time (ms):                           134
 Min response time (ms):                             0
 Avg response time (ms):                         83.35
@@ -66,7 +66,7 @@ Terminal 1: $ go run .
 Terminal 2: [baton]
 
 Time taken to complete requests:           607.2148ms
-Requests per second:                          1646864
+Requests per second:                        1 646 864
 Max response time (ms):                           523
 Min response time (ms):                             0
 Avg response time (ms):                          8.95
