@@ -13,16 +13,16 @@ CompositeResolver.RegisterAndSetAsDefault(
 )
 
 type Residence =
-    { Address: string
-      City: string
-      Country: string }
+    { address: string
+      city: string
+      country: string }
 
 type Person =
-    { Name: string
-      Email: string
-      Residences: Collections.Generic.List<Residence> }
+    { name: string
+      email: string
+      residences: Collections.Generic.List<Residence> }
 
-let people = Collections.Generic.List<Person>()
+let people = Collections.Concurrent.ConcurrentBag<Person>()
 
 let appendPeople (r: HttpRequest) =
     Text.Encoding.UTF8.GetString(r.rawForm)
