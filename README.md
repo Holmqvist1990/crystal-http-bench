@@ -1,6 +1,6 @@
 # HTTP-JSON-Bench.
 
-Benching a tiny in-memory C**R**UD HTTP server implementation in a various languages.
+Benching a tiny in-memory **C**RUD HTTP server implementation in a various languages.
 
 ```
 HTTP POST -> JSON Body -> {Person} > Add into mutable List<Person>
