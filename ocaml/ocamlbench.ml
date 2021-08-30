@@ -27,7 +27,9 @@ let insert = App.post "/" (fun request ->
         | Error error -> raise (Invalid_argument error)
     in
     people := input_person :: !people;
-    Lwt.return (Response.make ~status: `OK ()))
+    Response.make ~status: `OK ()
+    |> Response.add_header_unless_exists ("Connection", "Keep-Alive")
+    |> Lwt.return)
 
 let () = App.empty 
     |> get

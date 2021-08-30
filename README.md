@@ -88,19 +88,19 @@ Terminal 1: $ dune build
             $ dune exec ./ocamlbench.exe
 Terminal 2: $ [apachebench]
 
-Time taken for tests:   155.245 seconds
+Time taken for tests:   49.154 seconds
 Complete requests:      500000
 Failed requests:        0
-Keep-Alive requests:    0
-Total transferred:      18999392 bytes
+Keep-Alive requests:    250038
+Total transferred:      15512896 bytes
 Total body sent:        423000000
 HTML transferred:       0 bytes
-Requests per second:    3220.71 [#/sec] (mean)
-Time per request:       310.491 [ms] (mean)
-Time per request:       0.310 [ms] (mean, across all concurrent requests)
-Transfer rate:          119.51 [Kbytes/sec] received
-                        2660.86 kb/s sent
-                        2780.37 kb/s total
+Requests per second:    10172.13 [#/sec] (mean)
+Time per request:       98.308 [ms] (mean)
+Time per request:       0.098 [ms] (mean, across all concurrent requests)
+Transfer rate:          308.20 [Kbytes/sec] received
+                        8403.93 kb/s sent
+                        8712.13 kb/s total
 ```
 
 ## #5. V implementation.
