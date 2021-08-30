@@ -1,6 +1,6 @@
 # HTTP-JSON-Bench.
 
-Testing a tiny CRUD implementation in a various languages.
+Benching a tiny in-memory C**R**UD HTTP server implementation in a various languages.
 
 ```
 HTTP POST -> JSON Body -> {Person} > Add into mutable List<Person>
@@ -10,6 +10,10 @@ Benching with [ApacheBench](https://httpd.apache.org/docs/2.4/programs/ab.html).
 
 ```
 ab -c 1000 -n 500000 -p test.json -T application/x-www-form-urlencoded -k http://localhost:3000/ >result.txt 2>&1
+
+1000 connections.
+500 000 requests.
+Keep alive.
 ```
 
 ## #1. Go implementation.
