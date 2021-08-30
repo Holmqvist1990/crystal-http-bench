@@ -6,77 +6,104 @@ Testing a tiny CRUD implementation in a various languages.
 HTTP POST -> JSON Body -> {Person} > Add into mutable List<Person>
 ```
 
-Benching with [Baton](https://github.com/americanexpress/baton).
+Benching with [ApacheBench](https://httpd.apache.org/docs/2.4/programs/ab.html).
 
 ```
-baton -u http://localhost:3000 -c 1000 -r 1000000 -m POST -f test.json
+ab -c 1000 -n 500000 -p test.json -T application/x-www-form-urlencoded -k http://localhost:3000/ >result.txt 2>&1
 ```
 
-## TODO.
-* ~~Currently unsafe writes.~~
-* ~~F# implementation fails to deserialize values.~~
-* V refuses benchmark connections.
+## #1. Go implementation.
 
-## #1. Crystal implementation.
+```
+Terminal 1: $ go run .
+Terminal 2: [apachebench]
+
+Time taken for tests:   8.209 seconds
+Complete requests:      500000
+Failed requests:        0
+Keep-Alive requests:    500000
+Total transferred:      52000000 bytes
+Total body sent:        423000000
+HTML transferred:       0 bytes
+Requests per second:    60906.14 [#/sec] (mean)
+Time per request:       16.419 [ms] (mean)
+Time per request:       0.016 [ms] (mean, across all concurrent requests)
+Transfer rate:          6185.78 [Kbytes/sec] received
+                        50318.94 kb/s sent
+                        56504.72 kb/s total
+```
+
+## #2. Crystal implementation.
 
 ```
 Terminal 1: $ crystal build server.cr --release
             $ ./server
-Terminal 2: [baton]
+Terminal 2: [apachebench]
 
-Time taken to complete requests:           327.3433ms
-Requests per second:                        3 054 897
-Max response time (ms):                           117
-Min response time (ms):                             0
-Avg response time (ms):                         28.11
+Time taken for tests:   19.589 seconds
+Complete requests:      500000
+Failed requests:        0
+Keep-Alive requests:    500000
+Total transferred:      31000000 bytes
+Total body sent:        423000000
+HTML transferred:       0 bytes
+Requests per second:    25524.37 [#/sec] (mean)
+Time per request:       39.178 [ms] (mean)
+Time per request:       0.039 [ms] (mean, across all concurrent requests)
+Transfer rate:          1545.42 [Kbytes/sec] received
+                        21087.52 kb/s sent
+                        22632.94 kb/s total
 ```
 
-## #2. F# implementation.
+## #3. F# implementation.
 
 ```
 Terminal 1: $ dotnet build --configuration Release
             $ ./bin/Release/net5.0/fsharp.exe
-Terminal 2: $ [baton]
+Terminal 2: $ [apachebench]
 
-Time taken to complete requests:           372.7315ms
-Requests per second:                        2 682 896
-Max response time (ms):                           134
-Min response time (ms):                             0
-Avg response time (ms):                         83.35
+Time taken for tests:   34.259 seconds
+Complete requests:      500000
+Failed requests:        0
+Keep-Alive requests:    500000
+Total transferred:      79000000 bytes
+Total body sent:        423000000
+HTML transferred:       0 bytes
+Requests per second:    14594.63 [#/sec] (mean)
+Time per request:       68.518 [ms] (mean)
+Time per request:       0.069 [ms] (mean, across all concurrent requests)
+Transfer rate:          2251.91 [Kbytes/sec] received
+                        12057.68 kb/s sent
+                        14309.58 kb/s total
 ```
 
-## #3. OCaml implementation.
+## #4. OCaml implementation.
 
 ```
 Terminal 1: $ dune build
             $ dune exec ./ocamlbench.exe
-Terminal 2: $ [baton]
+Terminal 2: $ [apachebench]
 
-Time taken to complete requests:           376.8637ms
-Requests per second:                        2 653 479
-Max response time (ms):                            91
-Min response time (ms):                             0
-Avg response time (ms):                         22.97
-```
-
-## #4. Go implementation.
-
-```
-Terminal 1: $ go run .
-Terminal 2: [baton]
-
-Time taken to complete requests:           607.2148ms
-Requests per second:                        1 646 864
-Max response time (ms):                           523
-Min response time (ms):                             0
-Avg response time (ms):                          8.95
+Time taken for tests:   155.245 seconds
+Complete requests:      500000
+Failed requests:        0
+Keep-Alive requests:    0
+Total transferred:      18999392 bytes
+Total body sent:        423000000
+HTML transferred:       0 bytes
+Requests per second:    3220.71 [#/sec] (mean)
+Time per request:       310.491 [ms] (mean)
+Time per request:       0.310 [ms] (mean, across all concurrent requests)
+Transfer rate:          119.51 [Kbytes/sec] received
+                        2660.86 kb/s sent
+                        2780.37 kb/s total
 ```
 
 ## #5. V implementation.
 ```
 Terminal 1: $ v .
             $ ./v.exe
-Terminal 2: $ [baton]
+Terminal 2: $ [apachebench]
 
 apr_socket_recv: Transport endpoint is not connected (107)
 ```
