@@ -5,13 +5,17 @@ import (
 	"net/http"
 	"sync"
 
-	jsoniter "github.com/json-iterator/go"
+	"github.com/goccy/go-json"
 )
 
 var (
 	port   = 3000
 	people = People{}
-	json   = jsoniter.ConfigCompatibleWithStandardLibrary
+)
+
+const (
+	GET  = "GET"
+	POST = "POST"
 )
 
 func main() {
@@ -23,7 +27,7 @@ func main() {
 
 func router(w http.ResponseWriter, r *http.Request) {
 	switch r.Method {
-	case "GET":
+	case GET:
 		people.mu.Lock()
 		defer people.mu.Unlock()
 		json, err := json.Marshal(people.v)
@@ -33,16 +37,18 @@ func router(w http.ResponseWriter, r *http.Request) {
 		}
 		w.Write(json)
 		break
-	case "POST":
+	case POST:
 		var p Person
 		err := json.NewDecoder(r.Body).Decode(&p)
 		if err != nil {
 			w.WriteHeader(500)
 			return
 		}
-		people.mu.Lock()
-		defer people.mu.Unlock()
-		people.v = append(people.v, p)
+		go func() {
+			people.mu.Lock()
+			defer people.mu.Unlock()
+			people.v = append(people.v, p)
+		}()
 		w.WriteHeader(201)
 		break
 	}
