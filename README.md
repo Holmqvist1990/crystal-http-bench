@@ -16,6 +16,12 @@ ab -c 1000 -n 500000 -p test.json -T application/x-www-form-urlencoded -k http:/
 Keep alive.
 ```
 
+Or [wrk](https://github.com/wg/wrk) in the case of Janet (as `ab` doesn't seem to jive here):
+
+```
+wrk -t6 -d10 -c1000 -s wrk.lua http://localhost:3000/
+```
+
 ## #1. Go implementation.
 
 ```
@@ -108,21 +114,17 @@ Transfer rate:          308.20 [Kbytes/sec] received
 ```
 Terminal 1: $ jpm build
             $ ./build/app
-Terminal 2: $ [apachebench]
+Terminal 2: $ [wrk]
 
-Time taken for tests:   407.365 seconds
-Complete requests:      58000
-Failed requests:        0
-Keep-Alive requests:    0
-Total transferred:      11446000 bytes
-Total body sent:        48439000
-HTML transferred:       0 bytes
-Requests per second:    142.38 [#/sec] (mean)
-Time per request:       7023.535 [ms] (mean)
-Time per request:       7.024 [ms] (mean, across all concurrent requests)
-Transfer rate:          27.44 [Kbytes/sec] received
-                        116.12 kb/s sent
-                        143.56 kb/s total
+Running 10s test @ http://localhost:3000/
+  6 threads and 1000 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency   109.21ms   66.23ms   1.99s    92.59%
+    Req/Sec     0.93k   615.53     4.32k    69.61%
+  55395 requests in 10.10s, 10.25MB read
+  Socket errors: connect 0, read 0, write 0, timeout 133
+Requests/sec:   5486.00
+Transfer/sec:      1.01MB
 ```
 
 ## #6. V implementation.

@@ -1,0 +1,28 @@
+wrk.method = "POST"
+wrk.body = [[{
+    "name": "John A. Doe",
+    "email": "john.a.doe@email.com",
+    "residences": [
+        {
+            "street": "Example Avenue 123",
+            "city": "Megametro-3000",
+            "country": "Milky Way"
+        },
+        {
+            "street": "Example Avenue 124",
+            "city": "Megametro-3000",
+            "country": "Milky Way"
+        },
+        {
+            "street": "Example Avenue 125",
+            "city": "Megametro-3000",
+            "country": "Milky Way"
+        },
+        {
+            "street": "Example Avenue 126",
+            "city": "Megametro-3000",
+            "country": "Milky Way"
+        }
+    ]
+}]]
+wrk.headers["Content-Type"] = "application/json"
