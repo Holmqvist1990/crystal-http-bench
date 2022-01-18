@@ -1,3 +1,4 @@
+*.exe
 result.txt
 .fake
 .ionide

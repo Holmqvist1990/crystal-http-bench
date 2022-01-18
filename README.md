@@ -103,7 +103,29 @@ Transfer rate:          308.20 [Kbytes/sec] received
                         8712.13 kb/s total
 ```
 
-## #5. V implementation.
+## #5. Janet implementation.
+
+```
+Terminal 1: $ jpm build
+            $ ./build/app
+Terminal 2: $ [apachebench]
+
+Time taken for tests:   407.365 seconds
+Complete requests:      58000
+Failed requests:        0
+Keep-Alive requests:    0
+Total transferred:      11446000 bytes
+Total body sent:        48439000
+HTML transferred:       0 bytes
+Requests per second:    142.38 [#/sec] (mean)
+Time per request:       7023.535 [ms] (mean)
+Time per request:       7.024 [ms] (mean, across all concurrent requests)
+Transfer rate:          27.44 [Kbytes/sec] received
+                        116.12 kb/s sent
+                        143.56 kb/s total
+```
+
+## #6. V implementation.
 ```
 Terminal 1: $ v .
             $ ./v.exe

@@ -8,15 +8,16 @@
 (defn add [request]
   (if-let [{:body user} request]
     (do (array/push users user)
-        (@{:status 201}))
-    @{:status 500}))
+        @{:status 201 :headers @{}})
+    @{:status 500 :headers @{}}))
 
 (defroutes routes
   [:get "/" show]
   [:post "/" add])
 
 (def app (-> (handler routes)
-             (cors)
-             (json-body-parser)))
+             (json-body-parser)
+             (cors)))
 
-(server app 3000)
+(defn main [& args]
+  (server app 3000))
