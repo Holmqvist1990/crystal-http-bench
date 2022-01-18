@@ -8,3 +8,6 @@ result.txt
 /ocaml/_esy/*
 /ocaml/esy.lock/*
 /ocaml/node_modules/*
+*/build
+*.env
+*.sqlite3
