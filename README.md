@@ -22,19 +22,19 @@ Keep alive.
 Terminal 1: $ go run .
 Terminal 2: [apachebench]
 
-Time taken for tests:   7.885 seconds
+Time taken for tests:   3.181 seconds
 Complete requests:      500000
 Failed requests:        0
 Keep-Alive requests:    500000
 Total transferred:      52000000 bytes
-Total body sent:        423000000
+Total body sent:        410500000
 HTML transferred:       0 bytes
-Requests per second:    63411.27 [#/sec] (mean)
-Time per request:       15.770 [ms] (mean)
-Time per request:       0.016 [ms] (mean, across all concurrent requests)
-Transfer rate:          6440.21 [Kbytes/sec] received
-                        52388.61 kb/s sent
-                        58828.81 kb/s total
+Requests per second:    157184.46 [#/sec] (mean)
+Time per request:       6.362 [ms] (mean)
+Time per request:       0.006 [ms] (mean, across all concurrent requests)
+Transfer rate:          15964.05 [Kbytes/sec] received
+                        126023.87 kb/s sent
+                        141987.92 kb/s total
 ```
 
 ## #2. Crystal implementation.
