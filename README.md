@@ -45,6 +45,7 @@ Transfer rate:          15964.05 [Kbytes/sec] received
 
 ## 2. OCaml implementation.
 
+### With keep alive
 ```
 Terminal 1: $ dune build
             $ dune exec ./ocamlbench.exe
@@ -64,6 +65,23 @@ Time per request:       0.018 [ms] (mean, across all concurrent requests)
 Transfer rate:          1642.24 [Kbytes/sec] received
                         43492.91 kb/s sent
                         45135.15 kb/s total
+```
+
+### Without keep alive
+```
+Time taken for tests:   23.547 seconds
+Complete requests:      500000
+Failed requests:        0
+Keep-Alive requests:    0
+Total transferred:      19000000 bytes
+Total body sent:        410500000
+HTML transferred:       0 bytes
+Requests per second:    21233.72 [#/sec] (mean)
+Time per request:       47.095 [ms] (mean)
+Time per request:       0.047 [ms] (mean, across all concurrent requests)
+Transfer rate:          787.97 [Kbytes/sec] received
+                        17024.30 kb/s sent
+                        17812.27 kb/s total
 ```
 
 ## #3. Crystal implementation.
