@@ -1,4 +1,5 @@
 (executable
  (name ocamlbench)
  (libraries opium)
+ (ocamlopt_flags (:standard -O3))
  (preprocess (pps ppx_deriving_yojson)))

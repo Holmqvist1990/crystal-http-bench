@@ -43,7 +43,30 @@ Transfer rate:          15964.05 [Kbytes/sec] received
                         141987.92 kb/s total
 ```
 
-## #2. Crystal implementation.
+## 2. OCaml implementation.
+
+```
+Terminal 1: $ dune build
+            $ dune exec ./ocamlbench.exe
+Terminal 2: $ [apachebench]
+
+Time taken for tests:   9.217 seconds
+Complete requests:      500000
+Failed requests:        242317
+   (Connect: 0, Receive: 0, Length: 0, Exceptions: 242317)
+Keep-Alive requests:    250000
+Total transferred:      15500000 bytes
+Total body sent:        410500000
+HTML transferred:       0 bytes
+Requests per second:    54246.94 [#/sec] (mean)
+Time per request:       18.434 [ms] (mean)
+Time per request:       0.018 [ms] (mean, across all concurrent requests)
+Transfer rate:          1642.24 [Kbytes/sec] received
+                        43492.91 kb/s sent
+                        45135.15 kb/s total
+```
+
+## #3. Crystal implementation.
 
 ```
 Terminal 1: $ crystal build server.cr --release
@@ -65,7 +88,7 @@ Transfer rate:          1545.42 [Kbytes/sec] received
                         22632.94 kb/s total
 ```
 
-## #3. F# implementation.
+## #4. F# implementation.
 
 ```
 Terminal 1: $ dotnet build --configuration Release
@@ -85,28 +108,6 @@ Time per request:       0.069 [ms] (mean, across all concurrent requests)
 Transfer rate:          2251.91 [Kbytes/sec] received
                         12057.68 kb/s sent
                         14309.58 kb/s total
-```
-
-## #4. OCaml implementation.
-
-```
-Terminal 1: $ dune build
-            $ dune exec ./ocamlbench.exe
-Terminal 2: $ [apachebench]
-
-Time taken for tests:   49.154 seconds
-Complete requests:      500000
-Failed requests:        0
-Keep-Alive requests:    250038
-Total transferred:      15512896 bytes
-Total body sent:        423000000
-HTML transferred:       0 bytes
-Requests per second:    10172.13 [#/sec] (mean)
-Time per request:       98.308 [ms] (mean)
-Time per request:       0.098 [ms] (mean, across all concurrent requests)
-Transfer rate:          308.20 [Kbytes/sec] received
-                        8403.93 kb/s sent
-                        8712.13 kb/s total
 ```
 
 ## #5. Janet implementation.
