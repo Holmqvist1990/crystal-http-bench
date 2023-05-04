@@ -6,11 +6,9 @@ open Suave.Successful
 open Utf8Json
 open Utf8Json.Resolvers
 open Utf8Json.FSharp
+open Suave.Writers
 
-CompositeResolver.RegisterAndSetAsDefault(
-    FSharpResolver.Instance,
-    StandardResolver.Default
-)
+CompositeResolver.RegisterAndSetAsDefault(FSharpResolver.Instance, StandardResolver.Default)
 
 type Residence =
     { address: string
@@ -29,19 +27,21 @@ let appendPeople (r: HttpRequest) =
     |> fun x -> JsonSerializer.Deserialize<Person>(x)
     |> people.Add
 
-    OK ""
+    setHeader "Connection" "Keep-Alive" >=> OK ""
 
 let app =
     path "/"
-    >=> choose [ GET
-                 >=> request (fun _ -> OK(JsonSerializer.ToJsonString people))
-                 POST >=> request appendPeople ]
+    >=> choose
+        [ GET
+          >=> request (fun _ ->
+          setHeader "Connection" "Keep-Alive" >=> OK(JsonSerializer.ToJsonString people))
+          POST >=> request appendPeople ]
 
 [<EntryPoint>]
 let main argv =
     startWebServer
         { defaultConfig with
-              bindings = [ HttpBinding.createSimple HTTP "127.0.0.1" 3000 ] }
+            bindings = [ HttpBinding.createSimple HTTP "127.0.0.1" 3000 ] }
         app
 
     0

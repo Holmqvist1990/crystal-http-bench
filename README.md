@@ -113,19 +113,19 @@ Terminal 1: $ dotnet build --configuration Release
             $ ./bin/Release/net5.0/fsharp.exe
 Terminal 2: $ [apachebench]
 
-Time taken for tests:   34.259 seconds
+Time taken for tests:   32.936 seconds
 Complete requests:      500000
 Failed requests:        0
 Keep-Alive requests:    500000
 Total transferred:      79000000 bytes
-Total body sent:        423000000
+Total body sent:        410500000
 HTML transferred:       0 bytes
-Requests per second:    14594.63 [#/sec] (mean)
-Time per request:       68.518 [ms] (mean)
-Time per request:       0.069 [ms] (mean, across all concurrent requests)
-Transfer rate:          2251.91 [Kbytes/sec] received
-                        12057.68 kb/s sent
-                        14309.58 kb/s total
+Requests per second:    15180.81 [#/sec] (mean)
+Time per request:       65.873 [ms] (mean)
+Time per request:       0.066 [ms] (mean, across all concurrent requests)
+Transfer rate:          2342.35 [Kbytes/sec] received
+                        12171.34 kb/s sent
+                        14513.69 kb/s total
 ```
 
 ## #5. Janet implementation.
