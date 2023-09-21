@@ -1,57 +1,41 @@
 package main
 
 import (
-	"fmt"
+	"encoding/json"
+	"log"
 	"net/http"
 	"sync"
 
-	"github.com/goccy/go-json"
-)
-
-var (
-	port   = 3000
-	people = People{}
-)
-
-const (
-	GET  = "GET"
-	POST = "POST"
+	"github.com/gofiber/fiber/v2"
 )
 
 func main() {
-	http.HandleFunc("/", router)
-	if err := http.ListenAndServe(fmt.Sprintf(":%v", port), nil); err != nil {
-		panic(err)
+	people := People{
+		v:  []Person{},
+		mu: sync.RWMutex{},
 	}
-}
-
-func router(w http.ResponseWriter, r *http.Request) {
-	switch r.Method {
-	case GET:
-		people.mu.Lock()
-		defer people.mu.Unlock()
-		json, err := json.Marshal(people.v)
-		if err != nil {
-			w.WriteHeader(500)
-			return
-		}
-		w.Write(json)
-		break
-	case POST:
+	app := fiber.New(fiber.Config{
+		JSONEncoder: json.Marshal,
+		JSONDecoder: json.Unmarshal,
+	})
+	app.Get("/", func(c *fiber.Ctx) error {
+		people.mu.RLock()
+		defer people.mu.RUnlock()
+		return c.JSON(people.v)
+	})
+	app.Post("/", func(c *fiber.Ctx) error {
 		var p Person
-		err := json.NewDecoder(r.Body).Decode(&p)
-		if err != nil {
-			w.WriteHeader(500)
-			return
+		if err := c.BodyParser(&p); err != nil {
+			return err
 		}
 		go func() {
 			people.mu.Lock()
 			defer people.mu.Unlock()
 			people.v = append(people.v, p)
 		}()
-		w.WriteHeader(201)
-		break
-	}
+		return c.SendStatus(http.StatusCreated)
+	})
+	log.Fatal(app.Listen(":3000"))
 }
 
 type Person struct {
@@ -68,5 +52,5 @@ type Residence struct {
 
 type People struct {
 	v  []Person
-	mu sync.Mutex
+	mu sync.RWMutex
 }

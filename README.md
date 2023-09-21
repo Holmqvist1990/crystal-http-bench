@@ -28,19 +28,19 @@ wrk -t6 -d10 -c1000 -s wrk.lua http://localhost:3000/
 Terminal 1: $ go run .
 Terminal 2: [apachebench]
 
-Time taken for tests:   3.181 seconds
+Time taken for tests:   3.400 seconds
 Complete requests:      500000
 Failed requests:        0
 Keep-Alive requests:    500000
-Total transferred:      52000000 bytes
+Total transferred:      76000000 bytes
 Total body sent:        410500000
-HTML transferred:       0 bytes
-Requests per second:    157184.46 [#/sec] (mean)
-Time per request:       6.362 [ms] (mean)
-Time per request:       0.006 [ms] (mean, across all concurrent requests)
-Transfer rate:          15964.05 [Kbytes/sec] received
-                        126023.87 kb/s sent
-                        141987.92 kb/s total
+HTML transferred:       3500000 bytes
+Requests per second:    147059.52 [#/sec] (mean)
+Time per request:       6.800 [ms] (mean)
+Time per request:       0.007 [ms] (mean, across all concurrent requests)
+Transfer rate:          21829.15 [Kbytes/sec] received
+                        117906.12 kb/s sent
+                        139735.26 kb/s total
 ```
 
 ## #2. Java implementation.
