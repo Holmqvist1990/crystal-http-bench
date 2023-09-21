@@ -43,9 +43,29 @@ Transfer rate:          15964.05 [Kbytes/sec] received
                         141987.92 kb/s total
 ```
 
-## 2. OCaml implementation.
+## #2. Java implementation.
 
-### With keep alive
+```
+Terminal 1: $ ./mvnw exec:java
+Terminal 2: $ [apachebench]
+
+Time taken for tests:   6.350 seconds
+Complete requests:      500000
+Failed requests:        0
+Keep-Alive requests:    500000
+Total transferred:      45000000 bytes
+Total body sent:        410500000
+HTML transferred:       0 bytes
+Requests per second:    78735.79 [#/sec] (mean)
+Time per request:       12.701 [ms] (mean)
+Time per request:       0.013 [ms] (mean, across all concurrent requests)
+Transfer rate:          6920.14 [Kbytes/sec] received
+                        63127.04 kb/s sent
+                        70047.18 kb/s total
+```
+
+## #3. OCaml implementation.
+
 ```
 Terminal 1: $ dune build
             $ dune exec ./ocamlbench.exe
@@ -67,24 +87,7 @@ Transfer rate:          1642.24 [Kbytes/sec] received
                         45135.15 kb/s total
 ```
 
-### Without keep alive
-```
-Time taken for tests:   23.547 seconds
-Complete requests:      500000
-Failed requests:        0
-Keep-Alive requests:    0
-Total transferred:      19000000 bytes
-Total body sent:        410500000
-HTML transferred:       0 bytes
-Requests per second:    21233.72 [#/sec] (mean)
-Time per request:       47.095 [ms] (mean)
-Time per request:       0.047 [ms] (mean, across all concurrent requests)
-Transfer rate:          787.97 [Kbytes/sec] received
-                        17024.30 kb/s sent
-                        17812.27 kb/s total
-```
-
-## #3. Crystal implementation.
+## #4. Crystal implementation.
 
 ```
 Terminal 1: $ crystal build server.cr --release
@@ -106,7 +109,7 @@ Transfer rate:          1545.42 [Kbytes/sec] received
                         22632.94 kb/s total
 ```
 
-## #4. F# implementation.
+## #5. F# implementation.
 
 ```
 Terminal 1: $ dotnet build --configuration Release
@@ -128,7 +131,7 @@ Transfer rate:          2342.35 [Kbytes/sec] received
                         14513.69 kb/s total
 ```
 
-## #5. Janet implementation.
+## #6. Janet implementation.
 
 ```
 Terminal 1: $ jpm build
@@ -146,7 +149,7 @@ Requests/sec:   5486.00
 Transfer/sec:      1.01MB
 ```
 
-## #6. V implementation.
+## #7. V implementation.
 ```
 Terminal 1: $ v .
             $ ./v.exe
